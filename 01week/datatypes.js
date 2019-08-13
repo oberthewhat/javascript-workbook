@@ -22,10 +22,12 @@ console.log(number)
 console.log('--Problem 4')
 
 // your variable
-var myBool = 'penis';
+var myBool = true;
 var myNull = null;
 var myNumber = 88;
 var myNaN = a;
+var myString = "hello";
+var myUndefined = undefined;
 
 function isTypeOf(data) {
     return console.log(typeof data);
@@ -34,6 +36,8 @@ isTypeOf(myBool);
 isTypeOf(myNull);
 isTypeOf(myNumber);
 isTypeOf(myNaN);
+isTypeOf(myString);
+isTypeOf(myUndefined);
 
 //Problem 5
 console.log('--Problem 5')
