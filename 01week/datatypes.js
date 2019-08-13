@@ -27,21 +27,13 @@ var myNull = null;
 var myNumber = 88;
 var myNaN = a;
 
-// function declaration
 function isTypeOf(data) {
     return console.log(typeof data);
 }
-
-// function invocation
 isTypeOf(myBool);
 isTypeOf(myNull);
 isTypeOf(myNumber);
 isTypeOf(myNaN);
-
-
-// replace "myBool" with the other names of your variable each time you run it
-
-// OR copy/paste "isTypeOf()" once for each variable you have and place each variable name inside the "()". Make sure your variables are above your function invocation, else they will be "undefined"!
 
 //Problem 5
 console.log('--Problem 5')
