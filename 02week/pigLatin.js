@@ -9,18 +9,22 @@ const rl = readline.createInterface({
 
 //mycode
 function pigLatin(word) {
-    var firstPosition = firstVowel(word);
+
+
+    let newWord = word.toLowerCase().trim()
+
+    var firstPosition = firstVowel(newWord);
     if (firstPosition > 0) {
-        return word.slice(firstPosition) + word.slice(0, firstPosition) + 'ay'
+        return newWord.slice(firstPosition) + newWord.slice(0, firstPosition) + 'ay'
     }
-    return word + 'yay';
+    return newWord + 'yay';
 
 
 }
 
-function firstVowel(word) {
-    for (var i = 0; i < word.length; i++) {
-        if ("aeiou".indexOf(word[i]) !== -1) {
+function firstVowel(newWord) {
+    for (var i = 0; i < newWord.length; i++) {
+        if ("aeiou".indexOf(newWord[i]) !== -1) {
             return i;
         }
     }
