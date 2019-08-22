@@ -71,9 +71,11 @@ function diagonalWin() {
 
 function checkForWin() {
 
-    verticalWin(true)
-    horizontalWin(true)
-    diagonalWin(true)
+    if (
+        verticalWin(true) || horizontalWin(true) || diagonalWin(true)) {
+        return true
+        console.log('Winner!')
+    } else { "Stalemate" }
 }
 
 function ticTacToe(row, column) {
@@ -99,12 +101,22 @@ function getPrompt() {
     console.log("It's Player " + playerTurn + "'s turn.");
     rl.question('row: ', (row) => {
         rl.question('column: ', (column) => {
+            constraints(row, column);
             ticTacToe(row, column);
             getPrompt();
 
         });
     });
 
+
+}
+//Trying to figure out how to add constraints to the users input
+function constraints(row, column) {
+    if (row || column === NaN) {
+        return 'Please enter a number!'
+    } else if (row, column > 2) {
+        console.log("Please enter a number from 0 to 2")
+    }
 }
 
 
