@@ -23,8 +23,7 @@ function printBoard() {
     console.log('  ---------');
     console.log('2 ' + board[2].join(' | '));
 }
-let xWin;
-let oWin;
+
 
 function horizontalWin() {
     if (
@@ -80,6 +79,7 @@ function checkForWin() {
 
 function ticTacToe(row, column) {
     board[row][column] = playerTurn;
+
     checkForWin();
     playerTurn = switchPlayer(playerTurn);
 
@@ -101,7 +101,7 @@ function getPrompt() {
     console.log("It's Player " + playerTurn + "'s turn.");
     rl.question('row: ', (row) => {
         rl.question('column: ', (column) => {
-            constraints(row, column);
+            testInput();
             ticTacToe(row, column);
             getPrompt();
 
@@ -111,15 +111,17 @@ function getPrompt() {
 
 }
 //Trying to figure out how to add constraints to the users input
-function constraints(row, column) {
-    if (row || column === NaN) {
-        return 'Please enter a number!'
-    } else if (row, column > 2) {
-        console.log("Please enter a number from 0 to 2")
+function testInput(row, column) {
+    // If it's an invalid number
+    if ((row || column) > 2) {
+        console.log('Please enter a number from 0 to 2');
+        return;
+        // If it's already taken
+    } else if (row || column !== ' ') {
+        console.log('That spot is taken!');
+        return;
     }
 }
-
-
 
 // Tests
 
