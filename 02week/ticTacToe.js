@@ -101,7 +101,7 @@ function getPrompt() {
     console.log("It's Player " + playerTurn + "'s turn.");
     rl.question('row: ', (row) => {
         rl.question('column: ', (column) => {
-            testInput();
+            // testInput();
             ticTacToe(row, column);
             getPrompt();
 
@@ -111,17 +111,19 @@ function getPrompt() {
 
 }
 //Trying to figure out how to add constraints to the users input
-function testInput(row, column) {
-    // If it's an invalid number
-    if ((row || column) > 2) {
-        console.log('Please enter a number from 0 to 2');
-        return;
-        // If it's already taken
-    } else if (row || column !== ' ') {
-        console.log('That spot is taken!');
-        return;
-    }
-}
+// function testInput(row, column) {
+//     // If it's an invalid number
+//     if ((row || column) > 2) {
+//         console.log('Please enter a number from 0 to 2');
+//         return false;
+//         // If it's already taken
+//     } else if (board[row][column] != ' ') {
+//         console.log('That spot is taken!');
+//         return false;
+//     } else {
+//         return true;
+//     }
+// }
 
 // Tests
 
