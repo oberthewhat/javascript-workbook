@@ -13,6 +13,8 @@ let stacks = {
   c: []
 };
 
+let userStart = startStack.makelowercase()
+
 function printStacks() {
   console.log("a: " + stacks.a);
   console.log("b: " + stacks.b);
@@ -21,11 +23,19 @@ function printStacks() {
 
 function movePiece() {
   // Your code here
+  userStart.pop()
+  endStack.splice()
 
 }
 
 function isLegal() {
   // Your code here
+  let legal = ['a','b','c']
+  for (i=0; i < legal.length; i++){
+  if(userStart !== [i]){
+    console.log('bad');
+    return false;
+  }};
 
 }
 
@@ -36,6 +46,7 @@ function checkForWin() {
 
 function towersOfHanoi(startStack, endStack) {
   // Your code here
+
 
 }
 
