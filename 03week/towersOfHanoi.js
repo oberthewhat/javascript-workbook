@@ -7,8 +7,10 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
+// This is an object, "stacks",  that contains properties "a, b, and c", that are arrays.
+
 let stacks = {
-  a: [4, 3, 2, 1],
+  a: [4, 3, 2, 1], 
   b: [],
   c: []
 };
@@ -19,6 +21,7 @@ console.log('===================================================================
 console.log('hello! To play, choose row "a" and place peice onto row, "b" or "c". Then move around the numbers until you create a stack on the other rows. You can not place a larger number on top of a smaller number. Good luck!')
 console.log('===========================================================================')
 
+// This is the function that prints the playing board to the console. 
 
 function printStacks() {
   console.log("a: " + stacks.a);
@@ -27,7 +30,6 @@ function printStacks() {
 }
 
 function movePiece(startStack, endStack) {
-  // Your code here
 
   let popped = stacks[startStack].pop()
   stacks[endStack].push(popped)
@@ -46,11 +48,8 @@ function isLegal(startStack, endStack){
 }
 
 function isValid(startStack){
-  // Your code here
-
-  // startStack = startStack.toLowerCase()
   
-  let legal = ['a','b','c','A','B','C']
+  let legal = ['a','b','c','A','B','C'] //why is this messing up when i use uppercase
   for (let i=0; i < legal.length; i++){
     if(startStack == legal[i]){
     return true;
@@ -62,7 +61,8 @@ return false;
 }
 
 function checkForWin() {
-  // Your code here
+
+  
 let winner = [4, 3, 2, 1];
 let winC = true;
 let winB = true;
@@ -88,12 +88,18 @@ if(stacks.c.length == 4){
       winB = false
     }
 
-//this is where a counter function could be called
 console.log("---------------")
 console.count(' Turn: ')
 console.log("---------------")
 if(winB || winC){
-console.log('Winner!')
+console.log('!!!!!!WINNER!!!!!!!')
+
+stacks = {
+  a: [4, 3, 2, 1], 
+  b: [],
+  c: []
+};
+
 return true
 } else {
   return false
@@ -108,6 +114,7 @@ function towersOfHanoi(startStack, endStack) {
 
     movePiece(startStack,endStack);
     checkForWin()
+
   } 
 }
 
