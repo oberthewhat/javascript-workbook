@@ -29,27 +29,35 @@ function printStacks() {
   console.log("c: " + stacks.c);
 }
 
+
+//my move function. takes in startStack and endStack. what is taken in the pop method and stores it into a variable called popped. then pushes the popped variable onto the stack of the users choice. 
+
+
 function movePiece(startStack, endStack) {
 
   let popped = stacks[startStack].pop()
   stacks[endStack].push(popped)
 
 }
+
+//my isLegal function checks to see if the user has made an illegal move by placing a larger number on top of a small. 
+
 function isLegal(startStack, endStack){
-    let endArray = stacks[endStack];
+  let endArray = stacks[endStack];  //This stores the number in the users selection into a variable to compare in my if statement. 
   let startArray = stacks[startStack];
-  if (endArray[endArray.length -1] > startArray[startArray.length -1] || endArray.length == 0){
+
+  if (endArray[endArray.length -1] > startArray[startArray.length -1] || endArray.length == 0){ //this looks at the last number in the end row and compares it to the users selection. if everything is okay, then the move is accepted and it returns true. 
     return true
   } else {
-    console.log('A larger number can not be on top of a smaller number')
+    console.log('A larger number can not be on top of a smaller number') // If the stipulations are not met, the function does not allow the move and just logs to the console. 
     return false;
   }
 
 }
 
-function isValid(startStack){
-  
-  let legal = ['a','b','c','A','B','C'] //why is this messing up when i use uppercase
+function isValid(startStack){ //I made a seperate function to check for a valid imput. This makes sure the input is only within my options in the array, "legal". 
+  let lower = startStack.toLowerCase()
+  let legal = ['a','b','c'] //why is this messing up when i use uppercase
   for (let i=0; i < legal.length; i++){
     if(startStack == legal[i]){
     return true;
