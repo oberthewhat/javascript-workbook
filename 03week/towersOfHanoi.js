@@ -56,27 +56,28 @@ function isLegal(startStack, endStack){
 }
 
 function isValid(startStack){ //I made a seperate function to check for a valid imput. This makes sure the input is only within my options in the array, "legal". 
-  let lower = startStack.toLowerCase()
-  let legal = ['a','b','c'] //why is this messing up when i use uppercase
-  for (let i=0; i < legal.length; i++){
+  let legal = ['a','b','c',] //my array of legal options 
+  for (let i=0; i < legal.length; i++){  //looks through the array and compares to the user input
     if(startStack == legal[i]){
     return true;
   } 
   
 };
-console.log('Please enter only A, B or C')
+console.log('Please enter only a, b or c')  //if user enters anything else, it is logged to the console to inform them.
 return false;
 }
 
 function checkForWin() {
 
   
-let winner = [4, 3, 2, 1];
-let winC = true;
+let winner = [4, 3, 2, 1];  // this is how the array must be for there to be a winner.
+let winC = true;            // Set these variables for each of the if statements. They are set true unless the stacks does not equal the winner array. They are set true so the function will continue to run unless there is a winner. 
 let winB = true;
-if(stacks.c.length == 4){
+
+//this same function is used to win on b or c. since no arrays are never the same. This takes the array and checks to see if there are 4 numbers inside. If that is the case, It checks the array by number to the winning array. 
+
+if(stacks.c.length == 4){           
   for(let i = 0; i < stacks.c.length; i++){
-    console.log('c', winner[i], stacks.c[i])
     if(winner[i] !== stacks.c[i]){
       winC = false;
 
@@ -87,7 +88,6 @@ if(stacks.c.length == 4){
 
   if(stacks.b.length == 4){
     for(let i = 0; i < stacks.b.length; i++){
-      console.log('b', winner[i], stacks.b[i])
       if(winner[i] !== stacks.b[i]){
         winB = false;
   
@@ -96,13 +96,15 @@ if(stacks.c.length == 4){
       winB = false
     }
 
+    //added some console game fluff. 
+
 console.log("---------------")
-console.count(' Turn: ')
+console.count(' Turn: ')            // My turn counter.. how would this reset after a win? maybe this is the wrong method. I feel like i could set a variable to be the counter and end it when the tower function ends. 
 console.log("---------------")
-if(winB || winC){
+if(winB || winC){                      // If either of the variables set to tie into the if statement turn to be true. that will notify that there is a winner. 
 console.log('!!!!!!WINNER!!!!!!!')
 
-stacks = {
+stacks = {                   // This resets the board for another game. 
   a: [4, 3, 2, 1], 
   b: [],
   c: []
@@ -112,10 +114,11 @@ return true
 } else {
   return false
 };
-return winB || winC;
 
 
 }
+
+// My towers function.. basically If the user input is valid and legal, it allows the number to move to the row then checks to see if there was a win from that move. the function has one if statement with nested functions. 
 
 function towersOfHanoi(startStack, endStack) {
   if (isValid(startStack) && isValid(endStack) && isLegal(startStack,endStack)){
@@ -130,7 +133,9 @@ function towersOfHanoi(startStack, endStack) {
 function getPrompt() {
   printStacks();
   rl.question('start stack: ', (startStack) => {
+    startStack = startStack.toLowerCase()          //turns user input into a lowercase letter.
     rl.question('end stack: ', (endStack) => {
+			endStack = endStack.toLowerCase()
       towersOfHanoi(startStack, endStack);
       getPrompt();
     });
