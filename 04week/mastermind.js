@@ -28,20 +28,24 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function generateHint() {
-  // your code here
+function generateHint(guess) {
+guess = guess.split(' ')
+console.log(guess)
+for(let i = 0; i < guess.length; i++) 
 }
 
-function mastermind(guess) {
+function mastermind(guess) {  //looks at guess and matches with the solution. 
   solution = generateSolution();
-  console.log(solution)
-  // your code here
+
+  
 }
 
 
 function getPrompt() {
+  console.log(solution)   //just to see it. 
   rl.question('guess: ', (guess) => {
     mastermind(guess);
+    console.log(guess)
     printBoard();
     getPrompt();
   });
