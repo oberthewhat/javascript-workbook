@@ -31,7 +31,9 @@ function getRandomInt(min, max) {
 function generateHint(guess) {
 guess = guess.split(' ')
 console.log(guess)
-for(let i = 0; i < guess.length; i++) 
+for(let i = 0; i < guess.length; i++) {
+  
+}
 }
 
 function mastermind(guess) {  //looks at guess and matches with the solution. 
