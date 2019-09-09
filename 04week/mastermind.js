@@ -14,8 +14,10 @@ let letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 function printBoard() {
   for (let i = 0; i < board.length; i++) {
     console.log(board[i]);
-  }
-}
+    if(board.length > 10){
+      console.log("You are out of turns!")
+    }
+}}
 
 function generateSolution() {
   for (let i = 0; i < 4; i++) {
@@ -29,25 +31,49 @@ function getRandomInt(min, max) {
 }
 
 function generateHint(guess) {
-guess = guess.split(' ')
-console.log(guess)
-for(let i = 0; i < guess.length; i++) {
-  
+let solutionArray = solution.split('');
+let guessArray = guess.split('');
+let correctLetterLocations = 0;
+let correctLetters = 0;
+let hint;
+
+for(let i = 0; i < solutionArray.length; i++){
+  if (solutionArray[i] == guessArray[i]){
+    correctLetterLocations ++;
+    solutionArray[i] = null;
+  }  
 }
+for(let i = 0; i < solutionArray.length; i++){
+  let targetIndex = solutionArray.indexOf(guessArray[i]);
+  if(targetIndex > -1){
+    correctLetters ++;
+    solutionArray[targetIndex] = null;
+  }
+}
+hint = `${correctLetterLocations}-${correctLetters}`
+// console.log(hint);
+board.push(hint + ' ' + guess)
+return hint;
 }
 
 function mastermind(guess) {  //looks at guess and matches with the solution. 
-  solution = generateSolution();
-
+  solution = 'abcd'
+if(solution == guess){
+  let winString ='You guessed it!' 
+  console.log(winString)
+  return winString
+}
   
+  printBoard();
+  generateHint(guess);
+
 }
 
 
 function getPrompt() {
-  console.log(solution)   //just to see it. 
   rl.question('guess: ', (guess) => {
+    guess = guess.toLowerCase();
     mastermind(guess);
-    console.log(guess)
     printBoard();
     getPrompt();
   });
