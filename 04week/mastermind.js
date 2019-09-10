@@ -15,7 +15,7 @@ function printBoard() {
   for (let i = 0; i < board.length; i++) {
     console.log(board[i]);
     if(board.length > 10){
-      console.log("You are out of turns!")
+      console.log("You are out of turns!") //this didnt work.
     }
 }}
 
@@ -31,32 +31,31 @@ function getRandomInt(min, max) {
 }
 
 function generateHint(guess) {
-let solutionArray = solution.split('');
-let guessArray = guess.split('');
+let solutionArray = solution.split('');  //turns solution into an array
+let guessArray = guess.split('');        //turns guess into an array
 let correctLetterLocations = 0;
 let correctLetters = 0;
 let hint;
 
-for(let i = 0; i < solutionArray.length; i++){
+for(let i = 0; i < solutionArray.length; i++){ //looks through the array and checks how many similar characters there are
   if (solutionArray[i] == guessArray[i]){
     correctLetterLocations ++;
     solutionArray[i] = null;
   }  
 }
-for(let i = 0; i < solutionArray.length; i++){
-  let targetIndex = solutionArray.indexOf(guessArray[i]);
-  if(targetIndex > -1){
+for(let i = 0; i < solutionArray.length; i++){  //looks through the arrays and checks if the index of the arrays match
+  let targetIndex = solutionArray.indexOf(guessArray[i]); //assigns the index number to each letter in the arracy
+  if(targetIndex > -1){             // if index matches the number will be 0 or greater.
     correctLetters ++;
     solutionArray[targetIndex] = null;
   }
 }
-hint = `${correctLetterLocations}-${correctLetters}`
-// console.log(hint);
-board.push(hint + ' ' + guess)
+hint = `${correctLetterLocations}-${correctLetters}`  //adds a string to my hint variable
+board.push(hint + ' ' + guess)   //pushes the string to the board.
 return hint;
 }
 
-function mastermind(guess) {  //looks at guess and matches with the solution. 
+function mastermind(guess) {  //looks at guess and matches with the solution. why do i have to keep the solution abcd? according to the workbook instructions.
   solution = 'abcd'
 if(solution == guess){
   let winString ='You guessed it!' 
