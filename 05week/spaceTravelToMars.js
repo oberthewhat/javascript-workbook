@@ -11,6 +11,13 @@ let jobTypes = {
 
 // Your code here
 
+
+
+
+
+
+
+
 //tests
 if (typeof describe === 'function'){
   describe('CrewMember', function(){
