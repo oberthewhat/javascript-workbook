@@ -22,6 +22,7 @@ for (birthDate in person){
 		break;
 	}
 }
+console.log("*********************************************************")
 
 let arrayOfPersons = [
 	{
@@ -50,13 +51,26 @@ let arrayOfPersons = [
 	}
 ]
 
-arrayOfPersons.map((details => {
-	console.log(details)
+arrayOfPersons.map(((details, index) => {
+	console.log(details, index)
 }))
+console.log("*********************************************************")
+
+// ()=>{}  this is a phat arrow function
 
 
-let males = arrayOfPersons.filter(gender => gender == 'Male');
+ let array2 = arrayOfPersons.filter((males) => {
 
-console.log(males)
+	return males.gender == 'Male'
+})
+
+console.log(array2)
+console.log("*********************************************************")
 
 
+let array3 = arrayOfPersons.filter((bd) => {
+	return bd.birthDate.split(' ')[2] <= 1990
+
+})
+
+console.log(array3)
