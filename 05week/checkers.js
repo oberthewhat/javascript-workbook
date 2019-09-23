@@ -61,11 +61,12 @@ class Board {
   starterPieces() {
 
 
-    //laying out the red pieces
+    //laying out the red pieces. Likely not the most effective way to do this. 
+
   for(let row1 = 0; row1 < 3; row1++){
     for(let col1 = 0; col1 < 8; col1++){
         if(row1 % 2 == 0 && col1 %2 == 1){
-          this.grid[row1][col1] = this.redPiece
+          this.grid[row1][col1] = this.redPiece 
           this.checkers.push(this.redPiece)
         }
      }
@@ -104,7 +105,7 @@ class Board {
 class Game {
   constructor() {
     this.board = new Board;
-    this.player = "B" 
+    this.player = "B"   //sets first player to B
   }
   start() {
     this.board.createGrid();
@@ -112,11 +113,12 @@ class Game {
   }
  moveChecker(whichPiece, toWhere){
 
-    var whichPieceArr = whichPiece.split('');
+    var whichPieceArr = whichPiece.split('');  //breaks the string into an array
     var toWhereArr = toWhere.split('');
-    var chosen = this.board.grid[whichPieceArr[0]][whichPieceArr[1]]
+    var chosen = this.board.grid[whichPieceArr[0]][whichPieceArr[1]] // puts the players piece they want to move into a variable
 
 
+    //This is my move function. It checks the piece that was chosen follows all my restrictions set up in my valid move function and jump move function. It also prevents the same players pieces to be moved back to back. Then changes the player turn. 
   if(chosen === this.player && this.validInput(whichPiece, toWhere) && this.validMove(whichPiece,toWhere) || this.jumpMove(whichPiece, toWhere)){
    this.board.grid[toWhereArr[0]][toWhereArr[1]] = chosen
    this.board.grid[whichPieceArr[0]][whichPieceArr[1]] = null;
@@ -125,6 +127,8 @@ class Game {
 
 }
  }
+
+ // checks to see if the numbers selected by the user are within the limits of the array. 
 validInput(whichPiece, toWhere){
   var whichPieceArr = whichPiece.split('');
   var toWhereArr = toWhere.split('');
@@ -144,12 +148,16 @@ jumpMove(whichPiece,toWhere){
   var toWhereArr = toWhere.split('');
   var chosen = this.board.grid[whichPieceArr[0]][whichPieceArr[1]];
   var dropSpot = this.board.grid[toWhereArr[0]][toWhereArr[1]];
-  var redJumpRight = this.board.grid[Number(whichPieceArr[0]) +1][Number(whichPieceArr[1]) +1]
+
+  // these change the numbers in the array from a string to an integer and check the spot in within a legal move.
+
+  var redJumpRight = this.board.grid[Number(whichPieceArr[0]) +1][Number(whichPieceArr[1]) +1] 
   var redJumpLeft = this.board.grid[Number(whichPieceArr[0]) +1][Number(whichPieceArr[1]) -1]
   var blackJumpRight = this.board.grid[Number(whichPieceArr[0]) -1][Number(whichPieceArr[1]) +1]
   var blackJumpLeft = this.board.grid[Number(whichPieceArr[0]) -1][Number(whichPieceArr[1]) -1]
 
 
+  // prevents a player from chosing an empty spot or from dropping onto a spot that already has a piece. 
   if(chosen == null){
     return false;
     }
@@ -158,13 +166,14 @@ jumpMove(whichPiece,toWhere){
     
     }
     
+    // player move for the B piece. If the players piece is B, this checks if they want to jump a piece that is R. This also allows the jump over of the piece of a different color, then removes that piece from the board.
     if(chosen == 'B'){
       if(whichPiece - toWhere !== 18 && whichPiece - toWhere !== 22)
     {
         return false
       } else {
         if(blackJumpRight === 'R' && whichPiece - toWhere === 18){
-          this.board.grid[Number(whichPieceArr[0]) -1][Number(whichPieceArr[1]) +1] = null
+          blackJumpRight = null
           return true;
         } 
         if(blackJumpLeft === 'R' && whichPiece - toWhere === 22){
@@ -199,6 +208,9 @@ jumpMove(whichPiece,toWhere){
     
     }
 }
+
+// valid move makes sure the spots are not empty and that the player is only trying to move to the spot that is diagonally connected. 
+
 validMove(whichPiece, toWhere){
   var whichPieceArr = whichPiece.split('');
   var toWhereArr = toWhere.split('');
@@ -229,6 +241,7 @@ return true
 
 }
 
+// changes players 
 playerTurn(){
   if(this.player === 'B'){
     this.player = 'R'
