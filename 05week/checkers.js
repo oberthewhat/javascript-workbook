@@ -9,7 +9,7 @@ const rl = readline.createInterface({
 
 
 function Checkers() {
-  
+// this page intentionally left blank
 }
 
 
@@ -122,6 +122,7 @@ class Game {
   if(chosen === this.player && this.validInput(whichPiece, toWhere) && this.validMove(whichPiece,toWhere) || this.jumpMove(whichPiece, toWhere)){
    this.board.grid[toWhereArr[0]][toWhereArr[1]] = chosen
    this.board.grid[whichPieceArr[0]][whichPieceArr[1]] = null;
+   console.log(whichPiece, toWhere)
    this.playerTurn()
 } else {
 
@@ -167,17 +168,19 @@ jumpMove(whichPiece,toWhere){
     }
     
     // player move for the B piece. If the players piece is B, this checks if they want to jump a piece that is R. This also allows the jump over of the piece of a different color, then removes that piece from the board.
+
+
     if(chosen == 'B'){
       if(whichPiece - toWhere !== 18 && whichPiece - toWhere !== 22)
     {
         return false
       } else {
         if(blackJumpRight === 'R' && whichPiece - toWhere === 18){
-          blackJumpRight = null
+          this.board.grid[Number(whichPieceArr[0]) -1][Number(whichPieceArr[1]) +1] = null
           return true;
         } 
         if(blackJumpLeft === 'R' && whichPiece - toWhere === 22){
-          blackJumpLeft = null
+          this.board.grid[Number(whichPieceArr[0]) -1][Number(whichPieceArr[1]) -1] = null
           return true;
         }
         else { 
@@ -191,17 +194,21 @@ jumpMove(whichPiece,toWhere){
 
 
     if(chosen == 'R'){
-      if(toWhere - whichPiece !== 18 && toWhere - whichPiece !== 22){
+      if(toWhere - whichPiece !== 18 && toWhere - whichPiece !== 22)
+      {
         return false
       } else {
-        if(redJumpRight === 'B' && whichPiece - toWhere === 22){
-          redJumpRight = null
+        if(redJumpRight === 'B' && toWhere - whichPiece === 22){
+          this.board.grid[Number(whichPieceArr[0]) +1][Number(whichPieceArr[1]) +1]  = null
+          return true;
         }
-        if(redJumpLeft === 'B' && whichPiece - toWhere === 18){
-          redJumpLeft = null
+        if(redJumpLeft === 'B' && toWhere - whichPiece === 18){
+          this.board.grid[Number(whichPieceArr[0]) +1][Number(whichPieceArr[1]) -1] = null
+          return true;
         }         
         else { 
           console.log('You can not jump over an empty space or your own piece')
+          return false;
         } 
 
     }
