@@ -110,6 +110,7 @@ class Game {
   start() {
     this.board.createGrid();
     this.board.starterPieces();
+    console.log('#######  Black player turn  #######')
   }
  moveChecker(whichPiece, toWhere){
 
@@ -236,11 +237,13 @@ if(dropSpot !== null){
 if(chosen == 'B'){
   if(whichPiece - toWhere !== 9 && whichPiece - toWhere !== 11)
   {
+    console.log('Invalid Move')
     return false
   }
 }
 if(chosen == 'R'){
   if(toWhere - whichPiece !== 9 && toWhere - whichPiece !== 11){
+    console.log('Invalid Move')
     return false
   }
 }
@@ -260,6 +263,13 @@ playerTurn(){
 }
 
 }
+
+// double jump function
+
+
+
+// king function
+
 
 
 
