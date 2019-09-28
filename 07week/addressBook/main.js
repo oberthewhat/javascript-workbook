@@ -30,6 +30,9 @@ const list = () => {
 		image.src = arrayOfUsers.results[i].picture.thumbnail
 		const text = document.createTextNode(`${arrayOfUsers.results[i].name.first}  ${arrayOfUsers.results[i].name.last}`)
 		button.innerHTML = 'Details'
+		button.addEventListener('click', function() {
+			details(arrayOfUsers.results[i])
+		})
 		li.appendChild(text)
 		peopleList.append(li)
 		peoplePhoto.append(image)
@@ -38,15 +41,21 @@ const list = () => {
   }
 }
 
-const details = () => {
-		const moreInfo = document.getElementById('deets')
-		for(let i = 0; i < arrayOfUsers.results.length; i++ ){
-			const dob = document.createElement('li')
-			const address = document.createElement('li')
-			const phone = document.createTextNode(`Phone: ${arrayOfUsers.results[i].cell}`)
-			phone.innerHTML = `Phone: ${arrayOfUsers.results[i].cell}`
-			moreInfo.append(phone)
-		}
+const details = (result) => {
+			const moreInfo = document.getElementById('deets')
+			const removeInfo = document.createElement('button')
+			const age = document.createTextNode(` Age: ${result.dob.age}`)
+			const address = document.createTextNode(` Address: ${result.location.city}, ${result.location.state}`)
+			const phone = document.createTextNode(` Phone: ${result.cell}`)
+			phone.innerHTML = `Phone: ${result.cell}`
+			removeInfo.innerHTML = 'Hide'
+			removeInfo.addEventListener('click', function() {
+				document.getElementById('deets').innerHTML = ''
+			})
+			moreInfo.append(phone, address, age, removeInfo)
+	
+
+		
 
 
 

@@ -28,6 +28,9 @@ ul {
 	justify-content: space-around;
 }
 
-.peopleCard{
-
+#deets{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
