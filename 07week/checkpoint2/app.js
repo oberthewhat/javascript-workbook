@@ -80,5 +80,20 @@ const listPeopleChoices = () => {
 }
 
 const makePlayer = (id) => {
-  console.log(`li ${id} was clicked!`)
+  const playersSection = document.getElementById('players')
+  arrOfPeople.map(person => {
+    if(id === person.id){
+    const li = document.createElement("li")
+    const button = document.createElement("button")
+    button.innerHTML = "Remove Player"
+    button.addEventListener('click', function() {
+      console.log('remove')
+      person
+    })
+    button.addEventListener('click', function() {makePlayer(person.id)} )
+    playersSection.appendChild(button)
+    playersSection.appendChild(document.createTextNode(person.name + " - " + person.skillSet))
+  }
+  })
+
 }
