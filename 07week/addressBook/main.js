@@ -47,7 +47,7 @@ const details = (result) => {
 			const age = document.createTextNode(` Age: ${result.dob.age}`)
 			const address = document.createTextNode(` Address: ${result.location.city}, ${result.location.state}`)
 			const phone = document.createTextNode(` Phone: ${result.cell}`)
-			phone.innerHTML = `Phone: ${result.cell}`
+			// phone.innerHTML = `Phone: ${result.cell}`
 			removeInfo.innerHTML = 'Hide'
 			removeInfo.addEventListener('click', function() {
 				document.getElementById('deets').innerHTML = ''
