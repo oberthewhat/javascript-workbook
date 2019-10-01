@@ -87,8 +87,7 @@ const makePlayer = (id) => {
     const button = document.createElement("button")
     button.innerHTML = "Remove Player"
     button.addEventListener('click', function() {
-      console.log('remove')
-      person
+      person.innerHTML = ''
     })
     button.addEventListener('click', function() {makePlayer(person.id)} )
     playersSection.appendChild(button)
