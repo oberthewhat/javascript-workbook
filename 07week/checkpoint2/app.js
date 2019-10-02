@@ -76,6 +76,7 @@ class redTeammate extends player {
 
 //dispalys the list of players when the button is clicked, also creates a button for the user to move the person into the players array. 
 const listPeopleChoices = () => {
+  console.log('original array of people', arrOfPeople)
   const remButt = document.getElementById('listButton')
   remButt.style.display = 'none' //removes the button to move display more players
   const listElement = document.getElementById('people')
@@ -101,11 +102,13 @@ const listPeopleChoices = () => {
 
 //the function that is called when a user presses make player.
 const makePlayer = (id) => {
+  new player()
   const playersSection = document.getElementById('players')
   //maps through the array of people and compares it to what was selected from the list of people choices. Pushes that person to the list of players array
   arrOfPeople.map(person => { 
     if(id === person.id){
     listOfPlayers.push(person)
+    console.log('listOfPlayers after added to list of players', listOfPlayers)
     const li = document.createElement("li")
     const button = document.createElement("button")
     button.innerHTML = "Remove"
@@ -115,7 +118,7 @@ const makePlayer = (id) => {
       arrOfPeople.push(popped[0])
       listPeopleChoices()
       playersSection.removeChild(li)
-
+      console.log('listOfPlayers after removed from player list', listOfPlayers)
     })
     //create a blue button for users to chose which team.
     const blueButt = document.createElement("button")
@@ -131,9 +134,8 @@ const makePlayer = (id) => {
     redButt.innerHTML = "R"
     redButt.style.backgroundColor = "#F71E35"
     redButt.addEventListener('click', function() {
-      console.log('red clicked')
       makeRed()
-      listOfPlayers.splice(person[0])
+      // listOfPlayers.splice(person[0])
       playersSection.removeChild(li)
     })
     //appends the buttons and player info into the DOM
@@ -147,20 +149,23 @@ const makePlayer = (id) => {
 const makeRed = () => {
   document.getElementById('players')
   const redList = document.getElementById('red')
-  
   listOfPlayers.map(person => { 
     redTeam.push(person)
     listOfPlayers.splice(listOfPlayers.indexOf(person), 1)
     const li = document.createElement("li")
     const button = document.createElement("button")
     button.innerHTML = "Remove"
+    console.log('redTeam array after player added ', redTeam)
+    console.log('listOfplayers after added to redTeam', listOfPlayers)
     button.addEventListener('click', function() { 
-      redTeam.splice(blueTeam.indexOf(person),1)
+      redTeam.splice(redTeam.indexOf(person),0)
       redList.removeChild(li)
       arrOfPeople.push(person)
       makePlayer(person.id)
+      console.log('red team array after removed' , redTeam)
+      console.log(' listOfPlayers after removed from team ' , listOfPlayers)
+      console.log('arrOfPeople after removed from red', arrOfPeople)
     })
-
     li.appendChild(button)
     li.appendChild(document.createTextNode(" - " + person.name + " - " + person.skillSet))
     redList.appendChild(li)
@@ -171,7 +176,6 @@ const makeRed = () => {
   const makeBlue = () => {
     document.getElementById('players')
     const blueList = document.getElementById('blue')
-    
     listOfPlayers.map(person => { 
       blueTeam.push(person)
       listOfPlayers.splice(listOfPlayers.indexOf(person), 1)
@@ -185,7 +189,6 @@ const makeRed = () => {
         makePlayer(person.id)
         console.log('remove from blue team button pressed ',listOfPlayers)
       })
-  
       li.appendChild(button)
       li.appendChild(document.createTextNode(" - " + person.name + " - " + person.skillSet))
       blueList.appendChild(li)
