@@ -54,8 +54,7 @@ const details = (result) => {
 			})
 			moreInfo.append(phone, address, age, removeInfo)
 	
-
-		
+}
 
 
 
