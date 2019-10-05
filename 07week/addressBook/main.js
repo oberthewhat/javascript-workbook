@@ -47,14 +47,14 @@ const details = (result) => {
 			const age = document.createTextNode(` Age: ${result.dob.age}`)
 			const address = document.createTextNode(` Address: ${result.location.city}, ${result.location.state}`)
 			const phone = document.createTextNode(` Phone: ${result.cell}`)
+			// phone.innerHTML = `Phone: ${result.cell}`
 			removeInfo.innerHTML = 'Hide'
 			removeInfo.addEventListener('click', function() {
 				document.getElementById('deets').innerHTML = ''
 			})
 			moreInfo.append(phone, address, age, removeInfo)
 	
-
-		
+}
 
 
 
@@ -63,3 +63,16 @@ const details = (result) => {
 
 
 
+
+// const listPeopleChoices = () => {
+//   const listElement = document.getElementById('people')
+//   arrOfPeople.map(person => {
+//     const li = document.createElement("li")
+//     const button = document.createElement("button")
+//     button.innerHTML = "Make Player"
+//     button.addEventListener('click', function() {makePlayer(person.id)} )
+//     li.appendChild(button)
+//     li.appendChild(document.createTextNode(person.name + " - " + person.skillSet))
+//     listElement.append(li)
+//   })
+// }

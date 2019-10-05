@@ -2,17 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Address Book</title>
 </head>
 <body>
+  <button id='populate' onclick="list()">Populate Address Book</button>
+<div class="folks">
 
-  <button onclick="getUsers()">Get 5 Users</button>
-  <button onclick="list()">Fetch Comments</button>
-  <div>
-    <ul id='users'></ul>
-  </div>
+<div id="images"></div>
+<ul id="listOfPeople">
+</ul>
+</div>
+<div class="details">
+  <ul id="deets"></ul>
+</div>
   <script src="main.js"></script>
 </body>
 </html>
