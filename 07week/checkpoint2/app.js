@@ -115,7 +115,7 @@ const makePlayer = (id) => {
     //makes a button to remove the plater from the player list and put back into the array of people.
     button.addEventListener('click', function() { 
       const popped = listOfPlayers.splice(listOfPlayers.indexOf(person),1)
-      arrOfPeople.push(popped[0])
+      // arrOfPeople.push(popped[0])
       listPeopleChoices()
       playersSection.removeChild(li)
       console.log('listOfPlayers after removed from player list', listOfPlayers)
