@@ -1,14 +1,28 @@
 'use strict';
 window.onload = function () {
-	getBreweries()
+	getPokemon()
 }
 
-const getBreweries = () => {
-	fetch('https://randomuser.me/api/?results=5')
-	.then(fetched => fetched.json())  //takes in what is fetched and turns it into a JSON file
-	.then(breweries => {   //takes that json file and makes available into a function
-		arrayOfBreweries = breweries
-		console.log(arrayOfBreweries)
+const pokemon = []
+let image;
+
+let rando = Math.floor((Math.random() * 100) + 1);
+
+const getPokemon = () => {
+	fetch(`https://pokeapi.co/api/v2/pokemon/${rando}`)
+	.then(fetched => fetched.json())  
+	.then(pokemon => {  
+	image = pokemon.sprites.front_default
 	})	
 
+}
+
+
+const PokeOff = () => {
+	getPokemon()
+	const left = document.getElementById('leftPoke');
+	const right = document.getElementById('rightPoke');
+	const imgLeft = document.createElement('img')
+	imgLeft.src = "pokemon[0].sprites.front_default"
+	console.log(imgLeft)
 }
